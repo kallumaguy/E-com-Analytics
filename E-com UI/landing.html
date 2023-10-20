@@ -1,0 +1,297 @@
+<html>
+    <head>
+        <title>Home-MyG</title>
+        <!-- Bootstrap CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body onload="loadProducts()">
+        <!-- Ad Banner Start -->
+        <h2 style="color:white; background-color:black; text-align: center; ">MyG</h2>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <img src="https://www.apple.com/newsroom/images/product/watch/standard/Apple-Watch-SE-8up-hero-220907_big.jpg.large.jpg" alt="" style="width: 100%;"  >
+            </div>
+            <div class="col-lg-6 col-sm-12">
+            <h3 style="text-align: center; margin-top:250px;">Apple's new <span style="font-size:50px;">Watch Series 8</span></h3>
+            <p style="text-align: center">
+                IP6X Certified
+                50m Water Resistant
+                <span style="color: red;">ECG</span> Certified 
+            </p>
+            <p style="text-align:center;">
+                <button class="btn btn-primary" onclick="adClick()">Buy Now</button>
+                &nbsp;
+                <a href="" onclick="productClick()">View Details ></a>
+            </p>
+            </div>
+        </div>
+        <!-- Ad Banner End -->
+        <hr>
+        <!-- Product catelog start-->
+        <div class="container">
+            <h2 class="text-center">Products Catalogue</h2>
+               <br>
+                <!-- Grid with Card Start -->
+                <div class="row" id="productData">
+
+                </div>
+                <!-- Grid with Card End -->
+            </div>
+        <!-- Product catalogue end -->
+            <hr>
+        <!-- Contact Start -->
+        <div class="container">
+            <h2 class="text-center">Conatct Us</h2>
+            
+            <br>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                    <h6 style="margin-top:30px;">Email: <b>sales@myG.com</b></h6>
+                    <h6>Mobile: <b>+91 888 888 8888</b></h6>
+                    <p>Address: #123, 1st Cross, 1st Main<br>
+                    Adyar, Mangalore - 574143
+                    </p>
+                </div>
+
+                <div class="col-lg-8 col-sm-12">
+                    <br>
+                    <h4>For Bulk Orders Write Us</h4>
+                    <br>
+
+                    <p>
+                        <label>Name: </label>
+                        <input type="text" id="name" class="form-control">
+                        <span id="errName" style="color: red;"></span>
+                    </p>
+
+                    <p>
+                        <label>Email: </label>
+                        <input type="text" id="email" class="form-control">
+                        <span id="errEmail" style="color: red;"></span>
+                    </p>
+
+                    <p>
+                        <label>Mobile: </label>
+                        <input type="text" maxlength="10" id="mobile" class="form-control">
+                        <span id="errMobile" style="color: red;"></span>
+                    </p>
+
+                    <p>
+                        <label>Comments: </label>
+                        <textarea class="form-control" id="comments"></textarea>
+                        <span id="errComments" style="color: red;"></span>
+                    </p>
+                    
+                    <button onclick="validateForm()" class="btn btn-primary" style="width: 100%;">Submit</button>
+                    <span id="successMsg" style="color: green;"></span>
+
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+
+        <script>
+            function validateForm()
+            {
+              //fetch the value from Name Textbox
+                var name = document.getElementById('name').value
+
+              //check if name is empty or not
+                if(name == '')
+                {
+                    document.getElementById('errName').innerHTML = 'Please enter your name' 
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errName').innerHTML = ''
+                }
+
+                //validate Name
+                var regxName = /^[A-Za-z ]+$/
+                var validName = name.match(regxName)
+
+                if(!validName)
+                {
+                    document.getElementById('errName').innerHTML = 'Please enter valid name'
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errName').innerHTML = '' 
+                }
+
+                //fetch the value from Email Textbox
+                var email = document.getElementById('email').value
+
+                //check if email is empty or not
+                if(email == '')
+                {
+                    document.getElementById('errEmail').innerHTML = 'Please enter your email' 
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errEmail').innerHTML = ''
+                }
+                
+                //validate email
+                var regxEmail =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                var validEmail = email.match(regxEmail)
+
+                if(!validEmail)
+                {
+                    document.getElementById('errEmail').innerHTML = 'Please enter valid email'
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errEmail').innerHTML = ''
+                }
+
+                //fetch the value from mobile Textbox
+                var mobile = document.getElementById('mobile').value
+                
+                //check if the mobile is empty or not
+                if(mobile == '')
+                {
+                    document.getElementById('errMobile').innerHTML = 'Please enter Mobile'
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errMobile').innerHTML = ''
+                }
+
+                //validate phone
+                var regxMobile = /^[1-9]{1}[0-9]{9}$/
+                var validateMobile = mobile.match(regxMobile)
+
+                //check if mobile is valid or not
+                if(!validateMobile)
+                {
+                    document.getElementById('errMobile').innerHTML = 'Please enter the valid mobile'
+                    return false
+                }
+                else
+                {
+                    document.getElementById('errMobile').innerHTML = ''
+                }
+
+                //fetch value from comments
+                var comments = document.getElementById('comments').value
+
+                //if comments are written
+                if(comments)
+                {
+                    // Validate comments textarea
+                    var regxComments = /^[A-Za-z0-9#-.-/ ]+$/
+                    var validcomments = comments.match(regxComments)
+
+                    if(!validcomments)
+                    {
+                      document.getElementById('errComments').innerHTML = 'Only Alphanumeric with /.-# are allowed'
+                      return false  
+                    }
+                    else
+                    {
+                        document.getElementById('errComments').innerHTML = ''
+                    }
+
+                }
+                // else
+                // {
+                //     document.getElementById('errComments').innerHTML = 'Please enter the comments'
+                // }
+
+                /* AJAX Code goes here - facilitates sending data from client to server end */
+                var xhttpContacts = new XMLHttpRequest()
+                xhttpContacts.onreadystatechange = function()
+                {
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        document.getElementById('successMsg').innerHTML = this.responseText
+                    }
+                }
+                xhttpContacts.open('POST','http://localhost:5000/save-contact-data',true)
+                xhttpContacts.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+                xhttpContacts.send('name='+name+'&email='+email+'&mobile='+mobile+'&comments='+comments)
+
+            }
+
+            /* Load Products start */
+             function loadProducts()
+             {
+                /* AJAX code to recieve the data from the server*/
+                var xhttpProducts = new XMLHttpRequest()
+                xhttpProducts.onreadystatechange = function()
+                {
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        var jsonData = JSON.parse(this.responseText)
+                        var jsonDataLength = jsonData.length;
+                        var producthtml = ''
+
+                        for(var i=0;i<jsonDataLength;i++)
+                        {
+                            var productTitle = jsonData[i].product_title
+                            var productDescription = jsonData[i].product_description
+                            var productImage = jsonData[i].image
+
+                            producthtml+= '<div class="col-lg-3 col-sm-12">'
+                            producthtml+= '<div class="card">'
+                            producthtml+= '<img src='+productImage+' alt="" style="width:100%;">'
+                            producthtml+= '<div class="card-body">'
+                            producthtml+= '<h5 class="card-title"> '+productTitle+'</h5>'
+                            producthtml+= '<p class="card-text"> '+productDescription+' </p>'
+                            producthtml+= '<button class="btn btn-primary" style="width:100%;" onclick="ProClick()">Add to Cart</button>'
+                            producthtml+= '</div>'
+                            producthtml+= '</div>'
+                            producthtml+= '</div>'
+
+                        }
+                        document.getElementById('productData').innerHTML = producthtml;
+                    }
+                };
+                xhttpProducts.open('GET','http://localhost:5000/products',true)
+                xhttpProducts.send()
+             }
+            /* Load Products end */
+
+            /* Ad Click Function */
+           function adClick()
+           {    
+                /* AJAX Ad Click Start */
+                var xhttpAdClick = new XMLHttpRequest()
+                xhttpAdClick.onreadystatechange = function()
+                {
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        console.log(this.responseText)
+                    }   
+                }
+                xhttpAdClick.open('GET','http://localhost:5000/ad-click', true)
+                xhttpAdClick.send()  
+                /* AJAX Ad Click End */
+            }
+            /* Ad Click Function */
+           function productClick()
+           {    
+                /* AJAX Ad Click Start */
+                var xhttpProductClick = new XMLHttpRequest()
+                xhttpProductClick.onreadystatechange = function()
+                {
+                    if(this.readyState == 4 && this.status == 200)
+                    {
+                        console.log(this.responseText)
+                    }   
+                }
+                xhttpProductClick.open('GET','http://localhost:5000/product-click', true)
+                xhttpProductClick.send()  
+                /* AJAX Ad Click End */
+            }
+        </script>
+    </body>
+</html>
